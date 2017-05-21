@@ -54,11 +54,11 @@ class EasyEmail:
             server.sendmail(email_from, email_to, e_object.as_string())
             server.quit()
 
-            print "done"
+            print("done")
             return True
-        except Exception, e:
-            print e
-            print "error"
+        except Exception as e:
+            print(e)
+            print("error")
             return False
 
     @staticmethod
@@ -68,7 +68,7 @@ class EasyEmail:
         :return:
         """
         name, e_address = parseaddr(s)
-        e_address = e_address.encode('utf-8') if isinstance(e_address, unicode) else e_address
+        e_address = e_address.encode('utf-8') if isinstance(e_address, str) else e_address
         return formataddr((Header(name, 'utf-8').encode(), e_address))
 
 
@@ -97,10 +97,10 @@ class EasyEmail:
             # server.set_debuglevel(1)  # 用于打印交互信息
             server.sendmail(from_name, email_to, e_object.as_string())
             server.quit()
-            print "done"
+            print("done")
             return True
-        except Exception, e:
-            print e
+        except Exception as e:
+            print(e)
             return False
 
     send = send_by_localhost
@@ -126,7 +126,7 @@ class EasyEmail:
         # print ("%d messages in INBOX" % select_info['EXISTS'])
 
         all_message_ids = server.search(["UNSEEN"])
-        print len(all_message_ids)
+        print(len(all_message_ids))
 
         start = 0
         size = 1        # 每次取回邮件的个数，请自由配置
@@ -138,7 +138,7 @@ class EasyEmail:
 
             response = server.fetch(message_ids, ['BODY.PEEK[]'])
 
-            for message_id, message in response.iteritems():
+            for message_id, message in response.items():
                 try:
                     e = email.message_from_string(message['BODY[]'])
                     subject = str(email.header.make_header(email.header.decode_header(e.get("SUBJECT"))))
@@ -164,8 +164,8 @@ class EasyEmail:
                         'from': mail_from,
                         'content': content
                     }
-                except Exception, e:
-                    print e
+                except Exception as e:
+                    print(e)
                 yield info
         return
 
@@ -190,9 +190,9 @@ def test_get_email():
     if email_info:
         for info in email_info:
             for key in info:
-                print key
-                print info.get(key)
-                print '-'*20
+                print(key)
+                print(info.get(key))
+                print('-'*20)
 
 if __name__ == "__main__":
     test_get_email()

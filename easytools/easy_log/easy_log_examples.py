@@ -11,7 +11,7 @@ from EasyTools.easytools.easy_log.easy_log import EasyLog
 def example1():
     logger = EasyLog("my_module")
 
-    for i in xrange(1, 16):
+    for i in range(1, 16):
         logger.error("critical message %s" % i)
         time.sleep(1)
 
@@ -23,7 +23,7 @@ def example2():
     """
     try:
         1 / 0
-    except Exception, e:
+    except Exception as e:
         logger = EasyLog("my_module")
         logger.critical(e)
 

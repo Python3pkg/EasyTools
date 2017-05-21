@@ -20,7 +20,7 @@ class EasyLog:
                 content = yaml.load(fd)
             logging.config.dictConfig(content)
         except IOError as e:
-            print "File error: " + str(e)
+            print("File error: " + str(e))
 
     def __init__(self, log_filename):
         self.logger = logging.getLogger(log_filename)

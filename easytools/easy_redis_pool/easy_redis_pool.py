@@ -58,5 +58,5 @@ if __name__ == '__main__':
     port = 6379
     r = MyRedisPool.get_instance(host, port)
     r.hset('key', 'a', 'b')
-    print r.hget('key', 'a')
+    print(r.hget('key', 'a'))
 

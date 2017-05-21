@@ -48,8 +48,8 @@ class MyDB:
     def get_instance():     # 可以增加一个参数：根据dbname来加载对应的配置文件
         try:
             db = torndb.Connection(Host + ":" + str(Port), Db, user=User, password=Passwd)
-        except Exception, e:
-            print e
+        except Exception as e:
+            print(e)
             db = None
         return db
 
